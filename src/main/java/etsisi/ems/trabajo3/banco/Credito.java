@@ -5,12 +5,9 @@ import java.util.Vector;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class Credito {
-public Cuenta mCuentaAsociada;
+public class Credito  extends Tarjeta{
 protected double mCredito;
 protected Vector<Movimiento> mMovimientos;
-String mNumero, mTitular;
-LocalDate mFechaDeCaducidad;
 public String mNombreEntidad;
 public int mCCV;
 public int mMarcaInternacional; //mastercard, maestro, visa ...
@@ -18,19 +15,16 @@ public int mTipo; //oro platino clásica
 
 
 public Credito(String numero, String titular, LocalDate fechacaducidad, double credito, int marcainternacional,	String nombreentidad, int ccv) {
-mNumero = numero;
-mTitular = titular;
-mFechaDeCaducidad = fechacaducidad;
+super(fechacaducidad, numero, titular);
 mCredito = credito;
 mMovimientos = new Vector<Movimiento>();
 mMarcaInternacional = marcainternacional;
 mNombreEntidad = nombreentidad;
-mCCV = ccv;}
+mCCV = ccv;
+}
 	
 public Credito(String numero, String titular, LocalDate fechacaducidad, int tipo, int marcainternacional, String nombreentidad, int ccv) {
-mNumero = numero;
-mTitular = titular;
-mFechaDeCaducidad = fechacaducidad;
+super(fechacaducidad, numero, titular);
 mTipo = tipo;
 mCredito = calcularCredito(mTipo);
 mMovimientos = new Vector<Movimiento>();
@@ -92,11 +86,7 @@ return credito;}
 
 	//traspaso tarjeta a cuenta
 		public void ingresar(double x) throws Exception {
-			// Movimiento m=new Movimiento();
-			// m.setConcepto("Ingreso en cuenta asociada (cajero automático)");
-			// m.setImporte(x);
-			// mMovimientos.addElement(m);
-			
+
 			double comision = (x * 0.05 < 3.0 ? 3 : x * 0.05); // Añadimos una comisión de un 5%, mínimo de 3 euros.		
 			if (x > getCreditoDisponible())
 				throw new Exception("Crédito insuficiente");

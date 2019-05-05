@@ -10,9 +10,10 @@ public abstract class Tarjeta {
     String mNumero, mTitular;
     LocalDate mFechaDeCaducidad;
 
-     public Tarjeta (LocalDate fechaCaducidad, String mNumero, String mTitular){
+     public Tarjeta (Cuenta cuentaAsociada, LocalDate fechaCaducidad, String mNumero, String mTitular){
         this.mFechaDeCaducidad = fechaCaducidad;
         this.mNumero = mNumero;
         this.mTitular = mTitular;
+        this.mCuentaAsociada = cuentaAsociada;
     }
 }

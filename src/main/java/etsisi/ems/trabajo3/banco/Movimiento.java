@@ -15,7 +15,13 @@ public class Movimiento {
 
 	}
 
-	public double getImporte() {
+    public Movimiento(String mConcepto, LocalDate mFecha, double mImporte) {
+        this.mConcepto = mConcepto;
+        this.mFecha = mFecha;
+        this.mImporte = mImporte;
+    }
+
+    public double getImporte() {
 		return mImporte;
 	}
 

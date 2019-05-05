@@ -2,15 +2,10 @@ package etsisi.ems.trabajo3.banco;
 
 import java.time.LocalDate;
 
-public class Debito  {
-	public Cuenta mCuentaAsociada;
-	String mNumero, mTitular;
-	LocalDate mFechaDeCaducidad;
+public class Debito extends Tarjeta  {
 	
-	public Debito(String numero, String titular, LocalDate fechaCaducidad) {
-		mNumero = numero;
-		mTitular = titular;
-		mFechaDeCaducidad = fechaCaducidad;
+	Debito(Cuenta cuentaAsociada, String numero, String titular, LocalDate fechaCaducidad) {
+		super(cuentaAsociada, fechaCaducidad, numero, titular);
 	}
 	
 	public void setCuenta(Cuenta c) {
